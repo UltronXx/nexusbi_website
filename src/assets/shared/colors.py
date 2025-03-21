@@ -1,0 +1,5 @@
+black: str = "#161617"
+white: str = "#F5F5F7"
+white_mid: str = "#FBFBFB"
+white_grey: str = "#CECECE"
+cream: str = "#EFE8E2"

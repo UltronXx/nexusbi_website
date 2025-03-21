@@ -16,7 +16,8 @@ from flet import (
     ThemeMode,
     TextAlign,
     ControlEvent,
-    alignment
+    alignment,
+    margin
 )
 
 
@@ -30,8 +31,9 @@ class NavBar(Column):
         super().__init__()
 
         self.nav_bar_links: list[str] = [
-            "Link1", "Link2", "Link3", "Link4", "Link5"
+            "nav1", "nav2", "nav3", "nav4"
         ]
+
         self.nav_bar = Row(
             controls=[],
             alignment=MainAxisAlignment.CENTER,
@@ -40,17 +42,30 @@ class NavBar(Column):
 
         for nav_bar_link in self.nav_bar_links:
             self.nav_bar.controls.append(
-                Text(
-                    value=f"{nav_bar_link}",
-                    color="#f5f5f7", size=13,
-                    font_family="regular",
-                    # on_tap=lambda e: self.nav_link_tapped(e)
-                    on_tap=lambda _: print("Link tapped...")
-                )
+                Container(
+                    content=Text(
+                        value=f"{nav_bar_link}",
+                        color="#f5f5f7", size=13,
+                        font_family="regular",
+                    ),
+                    on_click=lambda e:
+                        print(f"<{e.control.content.value}> clicked...")
+                ),
             )
 
         self.background = Container(
-            height=55, bgcolor="#00215C", content=self.nav_bar
+            height=55,
+            bgcolor="#00215C",
+            padding=padding.symmetric(vertical=14, horizontal=210),
+            alignment=alignment.center,
+            content=Row(
+                alignment=MainAxisAlignment.SPACE_BETWEEN,
+                controls=[
+                    Image(src="imgs/LogO.png", width=90),
+                    Column(expand=True),
+                    self.nav_bar
+                ]
+            )
         )
         self.controls = [self.background]
 
@@ -91,9 +106,8 @@ class BottomNavBar(Column):
 
 # main content
 class ContentBody(Column):
-    def __init__(self, main_page: Page):
+    def __init__(self):
         super().__init__()
-        self.main_page = main_page
 
         self.width = 780
 
@@ -106,27 +120,27 @@ class ContentBody(Column):
                         Column(height=50),
                         # Hero Section
                         Container(
-                            height=480,
-                            alignment=alignment.center,
+                            bgcolor="pink",
+                            height=380,
+                            alignment=alignment.center_left,
+                            padding=padding.symmetric(horizontal=50),
                             border_radius=30,
                             content=Column(
                                 alignment=MainAxisAlignment.CENTER,
-                                horizontal_alignment=CrossAxisAlignment.CENTER,
+                                #horizontal_alignment=CrossAxisAlignment.CENTER,
                                 controls=[
                                     Text(
-                                        value="Site Under\nConstruction",
+                                        value="Site under\nConstruction",
                                         font_family="heavy",
                                         size=70,
-                                        text_align=TextAlign.CENTER,
                                         style=TextStyle(letter_spacing=-1, height=1),
                                     ),
                                     Column(height=10),
                                     Text(
-                                        value="Your patience,\nis everything we need.",
+                                        value="We're working hard on something exciting and will be\nlaunching soon. Check back later for updates. We appreciate\nyour patience!",
                                         font_family="semibold",
                                         size=15,
                                         style=TextStyle(height=1.2),
-                                        text_align=TextAlign.CENTER
                                     ),
                                 ]
                             )
@@ -141,13 +155,31 @@ class ContentBody(Column):
 # main
 def main(page: Page) -> None:
     page.title = "NexusBI Page"
-    page.theme_mode = ThemeMode.LIGHT
     
+    page.horizontal_alignment = "center"
+    page.window.width = 1200
+
+    page.theme_mode = ft.ThemeMode.LIGHT
+    page.bgcolor = "white"
+    page.padding = 0
+
+    page.scroll = ft.ScrollMode.HIDDEN
+
+    page.fonts = {
+        "regular": "fonts/SF-Pro-Display-Regular.otf",
+        "medium": "fonts/SF-Pro-Display-Medium.otf",
+        "semibold": "fonts/SF-Pro-Display-Semibold.otf",
+        "bold": "fonts/SF-Pro-Display-Bold.otf",
+        "heavy": "fonts/SF-Pro-Display-Heavy.otf",
+    }
+
     page.add(
         NavBar(),
-        # ContentBody(),
+        ContentBody(),
         BottomNavBar()
     )
 
+    page.update()
+
 if __name__ == "__main__":
-    app(target=main)
+    app(target=main, assets_dir=assets)
