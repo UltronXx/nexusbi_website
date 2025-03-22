@@ -81,7 +81,7 @@ class BottomNavBar(Column):
 
         self.controls = [
             Container(
-                bgcolor="#f5f5f7",
+                bgcolor=guidance,
                 height=220,
                 alignment=ft.alignment.center,
                 content=Column(
@@ -89,13 +89,14 @@ class BottomNavBar(Column):
                     horizontal_alignment=CrossAxisAlignment.CENTER,
                     controls=[
                         Text(
-                            value="NexusBI Advisory",
-                            size=40, color="black",
+                            value="Nexus BI Advisory",
+                            size=50, color=clarity,
                             font_family="bold",
                         ),
                         Text(
                             value="Copyright 2025",
-                            size=18, color="black",
+                            # size=18,
+                            color=clarity,
                             font_family="medium",
                         )
                     ]
@@ -120,7 +121,7 @@ class ContentBody(Column):
                         Column(height=50),
                         # Hero Section
                         Container(
-                            bgcolor="pink",
+                            bgcolor=clarity,
                             height=380,
                             alignment=ft.alignment.center_left,
                             padding=padding.symmetric(horizontal=50),
@@ -131,24 +132,200 @@ class ContentBody(Column):
                                 controls=[
                                     Text(
                                         value="Site under\nConstruction",
-                                        font_family="bold",
-                                        size=70,
+                                        font_family="heavy",
+                                        size=65, color=guidance,
                                         style=TextStyle(letter_spacing=-1, height=1),
                                     ),
                                     Column(height=10),
                                     Text(
                                         value="We're working hard on something exciting and will be\nlaunching soon. Check back later for updates. We appreciate\nyour patience!",
-                                        font_family="medium",
-                                        size=15,
+                                        font_family="medium", color=guidance,
+                                        #size=15,
                                         style=TextStyle(height=1.2),
                                     ),
                                 ]
                             )
                         ),
+                        Column(height=50),
+                        # Billboard
+                        Container(
+                            bgcolor="#F5F5F7",
+                            height=380,
+                        ),
+                        Column(height=50),
+                        # Social media
+                        Container(
+                            bgcolor="#F5F5F7",
+                            #height=380,
+                            padding=padding.symmetric(vertical=40),
+                            border_radius=20,
+                            content=Column(
+                                controls=[
+                                    Container(
+                                        alignment=ft.alignment.center,
+                                        content=Column(
+                                            horizontal_alignment=CrossAxisAlignment.CENTER,
+                                            spacing=0,
+                                            controls=[
+                                                Text(
+                                                    value="Connect with Us",
+                                                    font_family="semibold",
+                                                    size=35, color=guidance
+                                                    #style=TextStyle(letter_spacing=-1, height=1),
+                                                ),
+                                                Text(
+                                                    value="Let's cross Paths",
+                                                    font_family="medium",
+                                                    size=15, color=guidance
+                                                )
+                                            ]
+                                        )
+                                    ),
+                                    Column(height=10),
+                                    Row(
+                                        alignment=MainAxisAlignment.CENTER,
+                                        controls=[
+                                            # Facebook
+                                            Container(
+                                                bgcolor=guidance,
+                                                alignment=ft.alignment.center,
+                                                height=36, width=120,
+                                                border_radius=25,
+                                                content=Text(
+                                                    value="Facebook",
+                                                    color=clarity,
+                                                    font_family="medium",
+                                                ),
+                                                on_click=lambda
+                                                    e: self.social_media_button_clicked(e),
+                                                on_hover=lambda
+                                                    e: self.social_media_g2_hover(e),
+                                                scale=1,
+                                                animate=ft.animation.Animation(
+                                                    duration=200,
+                                                    curve=ft.AnimationCurve.EASE_IN
+                                                ),
+                                                animate_scale=ft.animation.Animation(
+                                                    duration=200,
+                                                    curve=ft.AnimationCurve.EASE_IN
+                                                ),
+                                            ),
+                                            # LinkedIn
+                                            Container(
+                                                alignment=ft.alignment.center,
+                                                height=36, width=120,
+                                                border_radius=25,
+                                                border=ft.border.all(
+                                                    width=1,
+                                                    color=guidance,
+                                                ),
+                                                content=Text(
+                                                    value="LinkedIn",
+                                                    color=guidance,
+                                                    font_family="semibold",
+                                                ),
+                                                on_click=lambda
+                                                    e: self.social_media_button_clicked(e),
+                                                on_hover=lambda
+                                                    e: self.social_media_g1_hover(e),
+                                                scale=1,
+                                                animate=ft.animation.Animation(
+                                                    duration=200,
+                                                    curve=ft.AnimationCurve.EASE_IN
+                                                ),
+                                                animate_scale=ft.animation.Animation(
+                                                    duration=200,
+                                                    curve=ft.AnimationCurve.EASE_IN
+                                                ),
+                                            ),
+                                            # Instagram
+                                            Container(
+                                                bgcolor=guidance,
+                                                alignment=ft.alignment.center,
+                                                height=36, width=120,
+                                                border_radius=25,
+                                                content=Text(
+                                                    value="Instagram",
+                                                    color=clarity,
+                                                    font_family="medium",
+                                                ),
+                                                on_click=lambda
+                                                    e: self.social_media_button_clicked(e),
+                                                on_hover=lambda
+                                                    e: self.social_media_g2_hover(e),
+                                                scale=1,
+                                                animate=ft.animation.Animation(
+                                                    duration=200,
+                                                    curve=ft.AnimationCurve.EASE_IN
+                                                ),
+                                                animate_scale=ft.animation.Animation(
+                                                    duration=200,
+                                                    curve=ft.AnimationCurve.EASE_IN
+                                                ),
+                                            ),
+                                            # WhatsApp
+                                            Container(
+                                                alignment=ft.alignment.center,
+                                                height=36, width=120,
+                                                border_radius=25,
+                                                border=ft.border.all(
+                                                    width=1,
+                                                    color=guidance,
+                                                ),
+                                                content=Text(
+                                                    value="WhatsApp",
+                                                    color=guidance,
+                                                    font_family="medium",
+                                                ),
+                                                on_click=lambda
+                                                    e: self.social_media_button_clicked(e),
+                                                on_hover=lambda
+                                                    e: self.social_media_g1_hover(e),
+                                                scale=1,
+                                                animate=ft.animation.Animation(
+                                                    duration=200,
+                                                    curve=ft.AnimationCurve.EASE_IN
+                                                ),
+                                                animate_scale=ft.animation.Animation(
+                                                    duration=200,
+                                                    curve=ft.AnimationCurve.EASE_IN
+                                                ),
+                                            ),
+                                        ]
+                                    )
+                                ]
+                            )
+                        ),
+                        Column(height=50),
                     ]
                 )
             )
         ]
+
+    def social_media_g1_hover(self, e: ft.ControlEvent) -> None:
+        e.control.bgcolor = guidance if e.control.bgcolor is None else None
+        e.control.scale = 1.1 if e.control.scale == 1 else 1
+        e.control.content.color = guidance if e.control.content.color == clarity else clarity
+        self.update()
+
+    def social_media_g2_hover(self, e: ft.ControlEvent) -> None:
+        e.control.bgcolor = guidance if e.control.bgcolor == clarity else clarity
+        e.control.scale = 1.1 if e.control.scale == 1 else 1
+        e.control.content.color = clarity if e.control.content.color == guidance else guidance
+        self.update()
+
+    def social_media_button_clicked(self, e: ft.ControlEvent) -> None:
+        button_text: str = e.control.content.value
+        if button_text == "Facebook":
+            print("Facebook")
+        if button_text == "Instagram":
+            print("Instagram")
+            # self.main_page.launch_url("https://www.instagram.com/_objectzero_/")
+        if button_text == "WhatsApp":
+            # self.main_page.launch_url("https://wa.me/+233505767395")
+            print("WhatsApp")
+        if button_text == "LinkedIn":
+            print("LinkedIn")
 
 
 
