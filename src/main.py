@@ -36,8 +36,7 @@ class NavBar(Column):
 
         self.nav_bar = Row(
             controls=[],
-            alignment=MainAxisAlignment.CENTER,
-            spacing=50,
+            spacing=40,
         )
 
         for nav_bar_link in self.nav_bar_links:
@@ -54,24 +53,25 @@ class NavBar(Column):
             )
 
         self.background = Container(
-            height=55,
-            bgcolor="#00215C",
-            padding=padding.symmetric(vertical=14, horizontal=210),
-            alignment=alignment.center,
-            content=Row(
-                alignment=MainAxisAlignment.SPACE_BETWEEN,
-                controls=[
-                    Image(src="imgs/LogO.png", width=90),
-                    Column(expand=True),
-                    self.nav_bar
-                ]
+                padding=10,
+                #bgcolor="blue",
+                alignment=alignment.center,
+                content=Container(
+                    width=800,
+                    bgcolor="green",
+                    border_radius=12,
+                    padding=padding.symmetric(vertical=15, horizontal=20),
+                    content=Row(
+                        alignment=MainAxisAlignment.SPACE_BETWEEN,
+                        controls=[
+                            Image(src="imgs/LogO.png", width=90),
+                            # Nav links
+                            self.nav_bar
+                        ]
+                    )
+                )
             )
-        )
         self.controls = [self.background]
-
-
-    def nav_link_tapped(self, e: ControlEvent) -> None:
-        print(e)
 
 
 # BottomNavBar
@@ -89,8 +89,8 @@ class BottomNavBar(Column):
                     horizontal_alignment=CrossAxisAlignment.CENTER,
                     controls=[
                         Text(
-                            value="ESB Foundation",
-                            size=30, color="black",
+                            value="NexusBI Advisory",
+                            size=40, color="black",
                             font_family="bold",
                         ),
                         Text(
@@ -173,8 +173,39 @@ def main(page: Page) -> None:
         "heavy": "fonts/SF-Pro-Display-Heavy.otf",
     }
 
+    top_nav: Column = Column(
+        controls=[
+            Container(
+                padding=10,
+                bgcolor="blue",
+                alignment=alignment.center,
+                content=Container(
+                    width=800,
+                    bgcolor="green",
+                    padding=12,
+                    content=Row(
+                        alignment=MainAxisAlignment.SPACE_BETWEEN,
+                        controls=[
+                            Image(src="imgs/LogO.png", width=90),
+                            Row(
+                                spacing=40,
+                                controls=[
+                                    Text(value="Link1"),
+                                    Text(value="Link2"),
+                                    Text(value="Link3"),
+                                    Text(value="Link4"),
+                                ]
+                            )
+                        ]
+                    )
+                )
+            )
+        ]
+    )
+
     page.add(
         NavBar(),
+        # top_nav,
         ContentBody(),
         BottomNavBar()
     )

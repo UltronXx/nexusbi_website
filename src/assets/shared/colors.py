@@ -1,3 +1,8 @@
+guidance: str = "#0F3451"
+compassion: str = "#CEA64E"
+alignment: str = "#B1D1C6"
+clarity: str = "#F0F0F0"
+
 black: str = "#161617"
 white: str = "#F5F5F7"
 white_mid: str = "#FBFBFB"
