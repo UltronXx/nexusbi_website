@@ -107,9 +107,10 @@ class BottomNavBar(Column):
 
 # main content
 class ContentBody(Column):
-    def __init__(self):
+    def __init__(self, page: Page):
         super().__init__()
 
+        self.main_page = page
         self.width = 780
 
         self.controls = [
@@ -197,7 +198,7 @@ class ContentBody(Column):
                         Column(height=50),
                         # Social media
                         Container(
-                            bgcolor="#F5F5F7",
+                            bgcolor=clarity,
                             #height=380,
                             padding=padding.symmetric(vertical=40),
                             border_radius=20,
@@ -211,7 +212,7 @@ class ContentBody(Column):
                                             controls=[
                                                 Text(
                                                     value="Connect with Us",
-                                                    font_family="semibold",
+                                                    font_family="bold",
                                                     size=35, color=guidance
                                                     #style=TextStyle(letter_spacing=-1, height=1),
                                                 ),
@@ -359,15 +360,13 @@ class ContentBody(Column):
     def social_media_button_clicked(self, e: ft.ControlEvent) -> None:
         button_text: str = e.control.content.value
         if button_text == "Facebook":
-            print("Facebook")
+            self.main_page.launch_url("https://www.facebook.com/share/1DDxT7Va5A/?mibextid=wwXIfr")
         if button_text == "Instagram":
-            print("Instagram")
-            # self.main_page.launch_url("https://www.instagram.com/_objectzero_/")
+            self.main_page.launch_url("https://www.instagram.com/nexusbiadvisory/?utm_source=ig_web_button_share_sheet")
         if button_text == "WhatsApp":
-            # self.main_page.launch_url("https://wa.me/+233505767395")
-            print("WhatsApp")
+            self.main_page.launch_url("https://wa.me/+233556823445")
         if button_text == "LinkedIn":
-            print("LinkedIn")
+            self.main_page.launch_url("https://www.linkedin.com/in/nexus-bi-advisory-94789b353?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app")
 
 
 
@@ -395,7 +394,7 @@ def main(page: Page) -> None:
 
     page.add(
         NavBar(),
-        ContentBody(),
+        ContentBody(page),
         BottomNavBar()
     )
 
