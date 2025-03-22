@@ -11,17 +11,18 @@ from flet import (
     TextStyle,
     MainAxisAlignment,
     CrossAxisAlignment,
-    alignment,
     padding,
     ThemeMode,
     TextAlign,
     ControlEvent,
-    alignment,
-    margin
+    margin,
+    alignment
 )
 
 
 from pathlib import Path
+from assets.shared.colors import *
+
 assets = f"{Path(__file__).parent}/src/assets"
 
 
@@ -49,26 +50,25 @@ class NavBar(Column):
                     ),
                     on_click=lambda e:
                         print(f"<{e.control.content.value}> clicked...")
-                ),
+                )
             )
 
         self.background = Container(
-                padding=10,
-                #bgcolor="blue",
-                alignment=alignment.center,
+                #padding=10,
+                bgcolor=guidance,
+                alignment=ft.alignment.center,
                 content=Container(
                     width=800,
-                    bgcolor="green",
-                    border_radius=12,
+                    #bgcolor=guidance,
+                    #border_radius=12,
                     padding=padding.symmetric(vertical=15, horizontal=20),
                     content=Row(
                         alignment=MainAxisAlignment.SPACE_BETWEEN,
                         controls=[
                             Image(src="imgs/LogO.png", width=90),
-                            # Nav links
                             self.nav_bar
-                        ]
-                    )
+                            ]
+                        )
                 )
             )
         self.controls = [self.background]
@@ -83,7 +83,7 @@ class BottomNavBar(Column):
             Container(
                 bgcolor="#f5f5f7",
                 height=220,
-                alignment=alignment.center,
+                alignment=ft.alignment.center,
                 content=Column(
                     alignment=MainAxisAlignment.CENTER,
                     horizontal_alignment=CrossAxisAlignment.CENTER,
@@ -122,7 +122,7 @@ class ContentBody(Column):
                         Container(
                             bgcolor="pink",
                             height=380,
-                            alignment=alignment.center_left,
+                            alignment=ft.alignment.center_left,
                             padding=padding.symmetric(horizontal=50),
                             border_radius=30,
                             content=Column(
@@ -131,14 +131,14 @@ class ContentBody(Column):
                                 controls=[
                                     Text(
                                         value="Site under\nConstruction",
-                                        font_family="heavy",
+                                        font_family="bold",
                                         size=70,
                                         style=TextStyle(letter_spacing=-1, height=1),
                                     ),
                                     Column(height=10),
                                     Text(
                                         value="We're working hard on something exciting and will be\nlaunching soon. Check back later for updates. We appreciate\nyour patience!",
-                                        font_family="semibold",
+                                        font_family="medium",
                                         size=15,
                                         style=TextStyle(height=1.2),
                                     ),
@@ -173,39 +173,9 @@ def main(page: Page) -> None:
         "heavy": "fonts/SF-Pro-Display-Heavy.otf",
     }
 
-    top_nav: Column = Column(
-        controls=[
-            Container(
-                padding=10,
-                bgcolor="blue",
-                alignment=alignment.center,
-                content=Container(
-                    width=800,
-                    bgcolor="green",
-                    padding=12,
-                    content=Row(
-                        alignment=MainAxisAlignment.SPACE_BETWEEN,
-                        controls=[
-                            Image(src="imgs/LogO.png", width=90),
-                            Row(
-                                spacing=40,
-                                controls=[
-                                    Text(value="Link1"),
-                                    Text(value="Link2"),
-                                    Text(value="Link3"),
-                                    Text(value="Link4"),
-                                ]
-                            )
-                        ]
-                    )
-                )
-            )
-        ]
-    )
 
     page.add(
         NavBar(),
-        # top_nav,
         ContentBody(),
         BottomNavBar()
     )
