@@ -32,7 +32,7 @@ class NavBar(Column):
         super().__init__()
 
         self.nav_bar_links: list[str] = [
-            "nav1", "nav2", "nav3", "nav4"
+            "Home", "Ask Me", "About Us", "Contact Us"
         ]
 
         self.nav_bar = Row(
@@ -46,7 +46,7 @@ class NavBar(Column):
                     content=Text(
                         value=f"{nav_bar_link}",
                         color="#f5f5f7", size=13,
-                        font_family="regular",
+                        font_family="medium",
                     ),
                     on_click=lambda e:
                         print(f"<{e.control.content.value}> clicked...")
@@ -133,12 +133,15 @@ class ContentBody(Column):
                                     Text(
                                         value="Site under\nConstruction",
                                         font_family="heavy",
-                                        size=65, color=guidance,
+                                        size=55, color=guidance,
                                         style=TextStyle(letter_spacing=-1, height=1),
                                     ),
                                     Column(height=10),
                                     Text(
-                                        value="We're working hard on something exciting and will be\nlaunching soon. Check back later for updates. We appreciate\nyour patience!",
+                                        value="We're working hard on something "
+                                                "exciting and will be\nlaunching soon. "
+                                                "Check back later for updates. "
+                                                "We appreciate\nyour patience!",
                                         font_family="medium", color=guidance,
                                         #size=15,
                                         style=TextStyle(height=1.2),
@@ -150,7 +153,46 @@ class ContentBody(Column):
                         # Billboard
                         Container(
                             bgcolor="#F5F5F7",
-                            height=380,
+                            border_radius=30,
+                            content=ft.Stack(
+                                expand=True,
+                                alignment=ft.alignment.center_left,
+                                #width=400,
+                                controls=[
+                                    Image(src="imgs/art.png"),
+                                    Container(
+                                        #bgcolor="blue",
+                                        padding=padding.symmetric(horizontal=60),
+                                        content=Column(
+                                            controls=[
+                                                Text(
+                                                    value="Nexus BI\nAdvisory",
+                                                    font_family="heavy",
+                                                    size=68, color="#F5F5F7",
+                                                    style=TextStyle(letter_spacing=-1, height=1),
+                                                ),
+                                                Column(height=65),
+                                                Container(
+                                                    width=600,
+                                                    content=Text(
+                                                        value="Is a trusted business advisory firm "
+                                                            "in Ghana specializing in financial and "
+                                                            "operational consulting for SMEs and "
+                                                            "non-profit organizations. Our expertise "
+                                                            "in data-driven decision-making, financial "
+                                                            "modelling, and tax advisory has helped "
+                                                            "numerous busineses optimize their performance "
+                                                            "and achieve sustainable growth.",
+                                                        font_family="regular", color="#f5f5f7",
+                                                        #size=15,
+                                                        style=TextStyle(height=1.2),
+                                                    ),
+                                                ),
+                                            ]
+                                        )
+                                    ),
+                                ]
+                            )
                         ),
                         Column(height=50),
                         # Social media
