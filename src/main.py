@@ -48,6 +48,7 @@ class NavBar(Column):
                         color="#f5f5f7", size=13,
                         font_family="medium",
                     ),
+                    on_hover=self.on_nav_hover,
                     on_click=lambda e:
                         print(f"<{e.control.content.value}> clicked...")
                 )
@@ -72,6 +73,9 @@ class NavBar(Column):
                 )
             )
         self.controls = [self.background]
+
+    def on_nav_hover(self, e) -> None:
+        print(e.control)
 
 
 # BottomNavBar
